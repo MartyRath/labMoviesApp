@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { MovieDetailsProps } from "../../types/interfaces";
 
 const styles = {
@@ -18,11 +19,24 @@ const styles = {
 };
 
 const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
+  // Getting favourites
+  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+  // Checks if input movie id matches movie id in favourites array
+  const isFavourite = favourites.some(
+    (movieObj: MovieDetailsProps) => movieObj.id === movie.id
+  );
+
   return (
     <Paper component="div" sx={styles.root}>
       <IconButton aria-label="go back">
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
+
+      {isFavourite && (
+        <IconButton aria-label="add to favourites">
+          {<FavoriteIcon color="primary" fontSize="large" />}
+        </IconButton>
+      )}
 
       <Typography variant="h4" component="h3">
         {movie.title}
