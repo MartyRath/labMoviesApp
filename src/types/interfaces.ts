@@ -52,18 +52,15 @@ export interface BaseMovieProps {
 
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
-    selectFavourite: (movieId: number) => void;  //add this
-  }
-
-  export interface BaseMovieListProps {
-    movies: BaseMovieProps[];
     action: (m: BaseMovieProps) => React.ReactNode;
   }
 
-  export interface Review{
-    id: string;
-    content: string
-    author: string
+  export interface Review {
+    author: string,
+    content: string,
+    agree: boolean,
+    rating: number,
+    movieId: number,
   }
 
   export interface GenreData {

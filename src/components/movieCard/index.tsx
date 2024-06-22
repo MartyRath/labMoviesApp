@@ -77,11 +77,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
       <CardActions disableSpacing>
         {action(movie)}
         <Button variant="outlined" size="medium" color="primary">
-          <Link to={`/movies/${movie.id}`}>
-            <Button variant="outlined" size="medium" color="primary">
-              More Info ...
-            </Button>
-          </Link>
+          <Link to={`/movies/${movie.id}`}>More Info ...</Link>
         </Button>
       </CardActions>
     </Card>
