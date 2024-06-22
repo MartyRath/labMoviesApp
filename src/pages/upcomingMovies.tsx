@@ -23,7 +23,7 @@ const genreFiltering = {
 };
 
 const HomePage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>(
+  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>( // caching implemented
     "upcoming",
     getUpcomingMovies
   );
