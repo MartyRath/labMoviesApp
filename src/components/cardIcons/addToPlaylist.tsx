@@ -5,11 +5,11 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { BaseMovieProps } from "../../types/interfaces";
 
 const AddToPlaylistIcon: React.FC<BaseMovieProps> = (movie) => {
-  //  const context = useContext(MoviesContext);
+  const context = useContext(MoviesContext);
 
   const onUserSelect = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    //    context.addToFavourites(movie);
+    context.addToMustWatch(movie);
   };
   return (
     <IconButton aria-label="add to favorites" onClick={onUserSelect}>
