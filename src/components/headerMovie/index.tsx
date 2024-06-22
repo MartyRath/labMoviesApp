@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -7,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { MovieDetailsProps } from "../../types/interfaces";
+import { MoviesContext } from "../../contexts/moviesContext";
+import Avatar from "@mui/material/Avatar";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 const styles = {
   root: {
@@ -16,28 +19,37 @@ const styles = {
     flexWrap: "wrap",
     padding: 1.5,
   },
+  avatar: {
+    backgroundColor: "rgb(255, 0, 0)",
+  },
 };
 
 const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
-  // Getting favourites
-  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
-  // Checks if input movie id matches movie id in favourites array
-  const isFavourite = favourites.some(
-    (movieObj: MovieDetailsProps) => movieObj.id === movie.id
-  );
+  const { mustWatches, favourites } = useContext(MoviesContext); //NEW
+
+  const isFavourite = favourites.find((id) => id === movie.id) ? true : false; //NEW
+  const isMustWatch = mustWatches.find((id) => id === movie.id) ? true : false;
 
   return (
     <Paper component="div" sx={styles.root}>
       <IconButton aria-label="go back">
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
-
-      {isFavourite && (
-        <IconButton aria-label="add to favourites">
-          {<FavoriteIcon color="primary" fontSize="large" />}
-        </IconButton>
-      )}
-
+      avatar=
+      {
+        <>
+          {isFavourite && (
+            <Avatar sx={styles.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          )}
+          {isMustWatch && (
+            <Avatar sx={styles.avatar}>
+              <PlaylistAddIcon />
+            </Avatar>
+          )}
+        </>
+      }
       <Typography variant="h4" component="h3">
         {movie.title}
         {"   "}
