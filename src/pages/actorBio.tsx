@@ -1,21 +1,21 @@
-import React from "react"; // replace existing react import
+import React from "react";
 import { useParams } from "react-router-dom";
-import MovieDetails from "../components/movieDetails";
-import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from "../api/tmdb-api";
+import ActorBio from "../components/actorBio";
+import PageTemplate from "../components/templateActorPage";
+import { getActor } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import { MovieDetailsProps } from "../types/interfaces";
+import { ActorDetailsProps } from "../types/interfaces";
 
-const MovieDetailsPage: React.FC = () => {
+const ActorBioPage: React.FC = () => {
   const { id } = useParams();
   const {
-    data: movie,
+    data: actor,
     error,
     isLoading,
     isError,
-  } = useQuery<MovieDetailsProps, Error>(["movie", id], () =>
-    getMovie(id || "")
+  } = useQuery<ActorDetailsProps, Error>(["actor", id], () =>
+    getActor(id || "")
   );
 
   if (isLoading) {
@@ -28,17 +28,17 @@ const MovieDetailsPage: React.FC = () => {
 
   return (
     <>
-      {movie ? (
+      {actor ? (
         <>
-          <PageTemplate movie={movie}>
-            <MovieDetails {...movie} />
+          <PageTemplate actor={actor}>
+            <ActorBio {...actor} />
           </PageTemplate>
         </>
       ) : (
-        <p>Waiting for movie details</p>
+        <p>Waiting for actor details</p>
       )}
     </>
   );
 };
 
-export default MovieDetailsPage;
+export default ActorBioPage;
