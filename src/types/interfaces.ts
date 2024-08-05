@@ -5,6 +5,12 @@ export interface ActorDetailsProps {
   birthday: string;
   place_of_birth: string;
   profile_path: string;
+  known_for_department: string;
+  imdb_id: string;
+}
+
+export interface ActorImage {
+  file_path: string;
 }
 
 export interface BaseMovieProps {

@@ -12,18 +12,18 @@ export const getActor = (id: string) => {
  });
 };
 
-export const getActorImages = (id: string) => {
+export const getActorImages = (id: string | number) => {
   return fetch(
     `https://api.themoviedb.org/3/person/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
-      throw new Error(`Failed to get movie data. Response status: ${response.status}`);
+      throw new Error(`Failed to get actor images. Response status: ${response.status}`);
     }
     return response.json();
-  })
+  }).then((json) => json.profiles)
   .catch((error) => {
-    throw error
- });
+    throw error;
+  });
 };
 
 export const getMovies = () => {
