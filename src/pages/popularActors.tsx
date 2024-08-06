@@ -1,35 +1,25 @@
 import React from "react";
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateActorListPage"; // Use a specific template for actors
 import { getPopularActors } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
-import MovieFilterUI, {
-  titleFilter,
-  genreFilter,
-} from "../components/movieFilterUI";
-import { DiscoverMovies } from "../types/interfaces";
+import ActorFilterUI from "../components/actorFilterUI";
+import { ActorDetailsProps, DiscoverActors } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
-const titleFiltering = {
-  name: "title",
-  value: "",
-  condition: titleFilter,
-};
-const genreFiltering = {
-  name: "genre",
-  value: "0",
-  condition: genreFilter,
+const nameFiltering = (actor: ActorDetailsProps, value: string): boolean => {
+  return actor.name.toLowerCase().includes(value.toLowerCase());
 };
 
 const PopularActors: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>(
-    "Popular Actors",
+  const { data, error, isLoading, isError } = useQuery<DiscoverActors, Error>(
+    "popularActors", // Use a consistent key for the query
     getPopularActors
   );
+
   const { filterValues, setFilterValues, filterFunction } = useFiltering([
-    titleFiltering,
-    genreFiltering,
+    { name: "name", value: "", condition: nameFiltering }, // Pass the filtering logic here
   ]);
 
   if (isLoading) {
@@ -42,31 +32,43 @@ const PopularActors: React.FC = () => {
 
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
-    const updatedFilterSet =
-      type === "title"
-        ? [changedFilter, filterValues[1]]
-        : [filterValues[0], changedFilter];
-    setFilterValues(updatedFilterSet);
+    setFilterValues([changedFilter]);
   };
 
-  const movies = data ? data.results : [];
-  const displayedMovies = filterFunction(movies);
+  const actors = data ? data.results : [];
+  const displayedActors = filterFunction(actors);
 
   return (
     <>
       <PageTemplate
-        title="Discover Movies"
-        movies={displayedMovies}
-        action={(movie: BaseMovieProps) => {
-          return <AddToFavouritesIcon {...movie} />;
+        title="Popular Actors"
+        actors={displayedActors}
+        action={(actor: ActorDetailsProps) => {
+          return (
+            <AddToFavouritesIcon
+              title={""}
+              budget={0}
+              homepage={undefined}
+              original_language={""}
+              overview={""}
+              release_date={""}
+              vote_average={0}
+              popularity={0}
+              tagline={""}
+              runtime={0}
+              revenue={0}
+              vote_count={0}
+              {...actor}
+            />
+          );
         }}
       />
-      <MovieFilterUI
+      <ActorFilterUI
         onFilterValuesChange={changeFilterValues}
-        titleFilter={filterValues[0].value}
-        genreFilter={filterValues[1].value}
+        nameFilter={filterValues[0].value}
       />
     </>
   );
 };
+
 export default PopularActors;

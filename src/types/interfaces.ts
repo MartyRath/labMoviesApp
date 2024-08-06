@@ -1,3 +1,21 @@
+export interface BaseActorListProps {
+  actors: ActorDetailsProps[];
+  action: (actor: ActorDetailsProps) => void;
+}
+
+export interface ActorListPageTemplateProps {
+  actors: ActorDetailsProps[];
+  title: string;
+  action: (actor: ActorDetailsProps) => React.ReactNode; // Action for the actor list
+}
+
+export interface DiscoverActors {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  results: ActorDetailsProps[];
+}
+
 export interface ActorDetailsProps {
   id: number;
   name: string;
@@ -35,7 +53,7 @@ export interface BaseMovieProps {
   }
 
   export interface BaseMovieListProps { 
-    movies: BaseMovie[];
+    movies: BaseMovieProps[]; // Changed from BaseMovie to BaseMovieProps
   }
 
   export interface MovieDetailsProps extends BaseMovieProps {
@@ -64,7 +82,7 @@ export interface BaseMovieProps {
     images: MovieImage[];
   }
 
-  export type FilterOption = "title" | "genre";
+  export type FilterOption = "title" | "genre" | "name";
 
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
@@ -92,3 +110,4 @@ export interface BaseMovieProps {
     total_results: number;
     results: BaseMovieProps[];
   }
+
