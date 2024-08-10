@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../headerActorList"; // Update this to point to your actor header component
+import Header from "../headerActorList";
 import Grid from "@mui/material/Grid";
-import ActorList from "../actorList"; // You will need an ActorList component similar to MovieList
-import { ActorListPageTemplateProps } from "../../types/interfaces"; // Update your interfaces as needed
+import ActorList from "../actorList";
+import { ActorListPageTemplateProps } from "../../types/interfaces";
 
 const styles = {
   root: {
@@ -21,8 +21,7 @@ const ActorListPageTemplate: React.FC<ActorListPageTemplateProps> = ({
         <Header title={title} />
       </Grid>
       <Grid item container spacing={5}>
-        <ActorList action={action} actors={actors} />{" "}
-        {/* Use ActorList instead of MovieList */}
+        <ActorList action={action} actors={actors}></ActorList>
       </Grid>
     </Grid>
   );

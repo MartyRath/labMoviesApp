@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import FilterActorsCard from "../filterActorsCard"; // Adjust the path as needed
+import FilterActorsCard from "../filterActorsCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { ActorDetailsProps } from "../../types/interfaces"; // Use the correct interface
+import { ActorDetailsProps } from "../../types/interfaces";
 
 export const nameFilter = (
   actor: ActorDetailsProps,
@@ -51,7 +51,7 @@ const ActorFilterUI: React.FC<ActorFilterUIProps> = ({
       >
         <FilterActorsCard
           onUserInput={onFilterValuesChange}
-          nameFilter={nameFilter} // Pass the name filter instead
+          nameFilter={nameFilter}
         />
       </Drawer>
     </>

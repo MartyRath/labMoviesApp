@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
-import img from "../../images/film-poster-placeholder.png"; // Change image for actors
+import img from "../../images/film-poster-placeholder.png"; // Change image for actors later
 import { ActorDetailsProps } from "../../types/interfaces";
 
 const styles = {
