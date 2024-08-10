@@ -59,7 +59,7 @@ export default {
   ],
   production_countries: [
     {
-      iso_3166_1: "US",
+      id: 1,
       name: "United States of America",
     },
   ],
