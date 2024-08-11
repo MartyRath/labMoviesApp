@@ -28,18 +28,19 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 e.g.
 
-- Discover list of movies - discover/movie
-- Movie details - movie/:id
-- Movie genres = /genre/movie/list
+- Actor details - person/:id
+- Actor images - /person/:id/images
+- Popular actors - person/popular
+- Popular movies - movie/popular
 
 ### Routing
 
 [ List the __new routes__ supported by your app and state the associated page.]
 
-- /blogs - displays all published blogs.
-- /blogs/:id - displays a particular blog.
-- /blogs/:id/comments - detail view of a particular blog and its comments.
-- etc.
+- /actors/:id - actor bio details, ActorBioPage.
+- /popularActors - displays popular actors, Popular Actors.
+- /popularMovies - displays popular movies, PopularMovies
+-
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
