@@ -12,11 +12,11 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any **modifications to existing features**) .]
 
-- Feature 1
-- Feature 2
-- Feature 3
-- etc
-- etc
+- Added 2 list and 1 detail view - popular movies, popular actors, actor bio (detail view)
+- Added parameterised URL: /actors/:id
+- Data hyperlinking from Popular Actors page to Actor Bio page
+- Additional data entity type: Actor
+- Additional filtering: filter by year
 
 ### Setup requirements.
 
