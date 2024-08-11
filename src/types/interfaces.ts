@@ -82,7 +82,7 @@ export interface BaseMovieProps {
     images: MovieImage[];
   }
 
-  export type FilterOption = "title" | "genre" | "name";
+  export type FilterOption = "title" | "genre" | "name" | "year";
 
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];

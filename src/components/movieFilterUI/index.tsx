@@ -1,7 +1,10 @@
+//Imports
 import React, { useState } from "react";
-import FilterCard from "../filterMoviesCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
+//Components
+import FilterCard from "../filterMoviesCard";
+//Interfaces
 import { BaseMovieProps } from "../../types/interfaces";
 
 export const titleFilter = (movie: BaseMovieProps, value: string): boolean => {
@@ -12,6 +15,17 @@ export const genreFilter = (movie: BaseMovieProps, value: string) => {
   const genreId = Number(value);
   const genreIds = movie.genre_ids;
   return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
+};
+
+// Year can be derived from release_date: "2017-12-13"
+export const yearFilter = (movie: BaseMovieProps, value: string): boolean => {
+  // Extract the year from the release_date
+  const year = movie.release_date
+    ? new Date(movie.release_date).getFullYear().toString()
+    : null;
+
+  // Check if the extracted year matches the provided value
+  return value ? year === value : true; // If value is an empty string, allow all movies
 };
 
 const styles = {
@@ -30,12 +44,14 @@ interface MovieFilterUIProps {
   onFilterValuesChange: (f: string, s: string) => void;
   titleFilter: string;
   genreFilter: string;
+  yearFilter: string;
 }
 
 const MovieFilterUI: React.FC<MovieFilterUIProps> = ({
   onFilterValuesChange,
   titleFilter,
   genreFilter,
+  yearFilter, // Will recieve year prop similar to genreFilter
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -58,6 +74,7 @@ const MovieFilterUI: React.FC<MovieFilterUIProps> = ({
           onUserInput={onFilterValuesChange}
           titleFilter={titleFilter}
           genreFilter={genreFilter}
+          yearFilter={yearFilter}
         />
       </Drawer>
     </>

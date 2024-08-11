@@ -1,5 +1,6 @@
+//Imports
 import React, { ChangeEvent } from "react";
-import { FilterOption, GenreData } from "../../types/interfaces";
+import { useQuery } from "react-query";
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -11,8 +12,11 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SortIcon from "@mui/icons-material/Sort";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+//Interfaces
+import { FilterOption, GenreData } from "../../types/interfaces";
+//API
 import { getGenres } from "../../api/tmdb-api";
-import { useQuery } from "react-query";
+//Components
 import Spinner from "../spinner";
 
 const styles = {
@@ -32,11 +36,13 @@ interface FilterMoviesCardProps {
   onUserInput: (f: FilterOption, s: string) => void;
   titleFilter: string;
   genreFilter: string;
+  yearFilter: string;
 }
 
 const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({
   titleFilter,
   genreFilter,
+  yearFilter,
   onUserInput,
 }) => {
   const { data, error, isLoading, isError } = useQuery<GenreData, Error>(
@@ -55,6 +61,12 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({
     genres.unshift({ id: "0", name: "All" });
   }
 
+  // Create a list of years from 1900 to the current year
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 1900 + 1 }, (_, i) =>
+    (1900 + i).toString()
+  );
+
   const handleChange = (
     e: SelectChangeEvent,
     type: FilterOption,
@@ -70,6 +82,10 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({
 
   const handleGenreChange = (e: SelectChangeEvent) => {
     handleChange(e, "genre", e.target.value);
+  };
+
+  const handleYearChange = (e: SelectChangeEvent) => {
+    handleChange(e, "year", e.target.value);
   };
 
   return (
@@ -89,6 +105,21 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({
             variant="filled"
             onChange={handleTextChange}
           />
+          <FormControl sx={styles.formControl}>
+            <InputLabel id="year-label">Year</InputLabel>
+            <Select
+              labelId="year-label"
+              id="year-select"
+              value={yearFilter || currentYear.toString()}
+              onChange={handleYearChange}
+            >
+              {years.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <FormControl sx={styles.formControl}>
             <InputLabel id="genre-label">Genre</InputLabel>
             <Select
