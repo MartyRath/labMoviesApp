@@ -12,7 +12,7 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any **modifications to existing features**) .]
 
-- Added 2 list and 1 detail view - popular movies, popular actors, actor bio (detail view)
+- Added 3 pages, 2 list and 1 detail view - daily trending movies, popular actors, actor bio
 - Added parameterised URL: /actors/:id
 - Data hyperlinking from Popular Actors page to Actor Bio page
 - Additional data entity type: Actor
@@ -31,7 +31,7 @@ e.g.
 - Actor details - person/:id
 - Actor images - /person/:id/images
 - Popular actors - person/popular
-- Popular movies - movie/popular
+- Daily Trending movies - /trending/movie/day
 
 ### Routing
 
@@ -39,7 +39,7 @@ e.g.
 
 - /actors/:id - actor bio details, ActorBioPage.
 - /popularActors - displays popular actors, Popular Actors.
-- /popularMovies - displays popular movies, PopularMovies
+- /trendingMovies - displays trending movies, TrendingMovies
 -
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]

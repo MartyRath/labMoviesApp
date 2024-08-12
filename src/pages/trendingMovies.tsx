@@ -1,12 +1,12 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
-import { getPopularMovies } from "../api/tmdb-api";
+import { getTrendingMovies } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import { DiscoverMovies } from "../types/interfaces";
+import { BaseMovieProps, DiscoverMovies } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
@@ -22,10 +22,10 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const PopularMovies: React.FC = () => {
+const TrendingMovies: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>(
-    "popular",
-    getPopularMovies
+    "trending",
+    getTrendingMovies
   );
   const { filterValues, setFilterValues, filterFunction } = useFiltering([
     titleFiltering,
@@ -55,7 +55,7 @@ const PopularMovies: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title="Popular Movies"
+        title="Daily Trending Movies"
         movies={displayedMovies}
         action={(movie: BaseMovieProps) => {
           return <AddToFavouritesIcon {...movie} />;
@@ -65,8 +65,9 @@ const PopularMovies: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
+        yearFilter={""}
       />
     </>
   );
 };
-export default PopularMovies;
+export default TrendingMovies;
