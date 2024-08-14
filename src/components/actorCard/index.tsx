@@ -1,4 +1,6 @@
-import React from "react";
+// Imports
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -6,10 +8,19 @@ import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
-import { Link } from "react-router-dom";
-import img from "../../images/film-poster-placeholder.png"; // Change image for actors later
-import { ActorDetailsProps } from "../../types/interfaces";
+
+// Images
+import img from "../../images/actor-placeholder.png";
+
+// Interfaces
+import { BaseActorProps } from "../../types/interfaces";
+
+// Components
+import { ActorsContext } from "../../contexts/actorsContext";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -20,38 +31,54 @@ const styles = {
 };
 
 interface ActorCardProps {
-  actor: ActorDetailsProps;
-  action: (a: ActorDetailsProps) => void;
+  actor: BaseActorProps;
+  action?: (actor: BaseActorProps) => React.ReactNode;
 }
 
 const ActorCard: React.FC<ActorCardProps> = ({ actor, action }) => {
+  const { favourites } = useContext(ActorsContext);
+  const isFavourite = favourites.find((id) => id === actor.id) ? true : false;
+
   return (
     <Card sx={styles.card}>
       <CardHeader
-        avatar={<Avatar sx={styles.avatar}>{actor.name.charAt(0)}</Avatar>}
+        avatar={
+          isFavourite ? (
+            <Avatar sx={styles.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
         title={
-          <Typography variant="h6" component="div">
+          <Typography variant="h5" component="p">
             {actor.name}
           </Typography>
         }
       />
       <CardMedia
         sx={styles.media}
-        image={actor.profile_path ? actor.profile_path : img}
-        title={actor.name}
+        image={
+          actor.profile_path
+            ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+            : img
+        }
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {actor.biography}
-        </Typography>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography variant="h6" component="p">
+              <CalendarIcon fontSize="small" />
+              {actor.birthday || "Unknown"}
+            </Typography>
+          </Grid>
+          <Grid item xs={6}></Grid>
+        </Grid>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => action(actor)}>
-          Perform Action
+      <CardActions disableSpacing>
+        {action && typeof action === "function" ? action(actor) : null}
+        <Button variant="outlined" size="medium" color="primary">
+          <Link to={`/actors/${actor.id}`}>More Info ...</Link>
         </Button>
-        <Link to={`/actors/${actor.id}`}>
-          <Button size="small">More Info</Button>
-        </Link>
       </CardActions>
     </Card>
   );

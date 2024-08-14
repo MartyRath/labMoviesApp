@@ -6,7 +6,7 @@ import ActorFilterUI from "../components/actorFilterUI";
 import { ActorDetailsProps, DiscoverActors } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+//import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
 const nameFiltering = (actor: ActorDetailsProps, value: string): boolean => {
   return actor.name.toLowerCase().includes(value.toLowerCase());
@@ -14,12 +14,12 @@ const nameFiltering = (actor: ActorDetailsProps, value: string): boolean => {
 
 const PopularActors: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverActors, Error>(
-    "popularActors", // Use a consistent key for the query
+    "popularActors",
     getPopularActors
   );
 
   const { filterValues, setFilterValues, filterFunction } = useFiltering([
-    { name: "name", value: "", condition: nameFiltering }, // Pass the filtering logic here
+    { name: "name", value: "", condition: nameFiltering },
   ]);
 
   if (isLoading) {
@@ -43,25 +43,9 @@ const PopularActors: React.FC = () => {
       <PageTemplate
         title="Popular Actors"
         actors={displayedActors}
-        action={(actor: ActorDetailsProps) => {
-          return (
-            <AddToFavouritesIcon
-              title={""}
-              budget={0}
-              homepage={undefined}
-              original_language={""}
-              overview={""}
-              release_date={""}
-              vote_average={0}
-              popularity={0}
-              tagline={""}
-              runtime={0}
-              revenue={0}
-              vote_count={0}
-              {...actor}
-            />
-          );
-        }}
+        /*action={(actor: ActorDetailsProps) => {
+          return <AddToFavouritesIcon {...actor} />;
+        }}*/
       />
       <ActorFilterUI
         onFilterValuesChange={changeFilterValues}

@@ -1,22 +1,22 @@
 export interface BaseActorListProps {
-  actors: ActorDetailsProps[];
-  action: (actor: ActorDetailsProps) => void;
+  actors: BaseActorProps[];
+  action: (actor: BaseActorProps) => void;
 }
 
 export interface ActorListPageTemplateProps {
-  actors: ActorDetailsProps[];
+  actors: BaseActorProps[];
   title: string;
-  action: (actor: ActorDetailsProps) => React.ReactNode; // Action for the actor list
+  action?: (actor: BaseActorProps) => React.ReactNode; // Action for the actor list
 }
 
 export interface DiscoverActors {
   page: number;	
   total_pages: number;
   total_results: number;
-  results: ActorDetailsProps[];
+  results: BaseActorProps[];
 }
 
-export interface ActorDetailsProps {
+export interface BaseActorProps {
   id: number;
   name: string;
   biography: string;
@@ -25,6 +25,7 @@ export interface ActorDetailsProps {
   profile_path: string;
   known_for_department: string;
   imdb_id: string;
+  poster_path?: string;
 }
 
 export interface ActorImage {

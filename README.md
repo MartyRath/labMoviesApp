@@ -16,7 +16,8 @@ This repository contains an implementation of the Movie Fans Web Application usi
 - Added parameterised URL: /actors/:id
 - Data hyperlinking from Popular Actors page to Actor Bio page
 - Additional data entity type: Actor
-- Additional filtering: filter by year
+- Additional filtering: filter by year, actor name
+- Server state Caching: useQuery in PopularActors
 
 ### Setup requirements.
 

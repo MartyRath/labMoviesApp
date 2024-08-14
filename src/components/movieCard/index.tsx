@@ -1,3 +1,4 @@
+// Imports
 import React, { MouseEvent, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,10 +12,13 @@ import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import Grid from "@mui/material/Grid";
-import img from "../../images/film-poster-placeholder.png";
-import { BaseMovieProps } from "../../types/interfaces";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+//Images
+import img from "../../images/film-poster-placeholder.png";
+//Interfaces
+import { BaseMovieProps } from "../../types/interfaces";
+//Components
 import { MoviesContext } from "../../contexts/moviesContext";
 
 const styles = {
