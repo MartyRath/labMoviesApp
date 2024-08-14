@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getActorImages } from "../../api/tmdb-api";
-import { ActorImage, ActorDetailsProps } from "../../types/interfaces";
+import { ActorImage, BaseActorProps } from "../../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
 import ActorHeader from "../headerActor";
@@ -21,7 +21,7 @@ const styles = {
 };
 
 interface TemplateActorPageProps {
-  actor: ActorDetailsProps;
+  actor: BaseActorProps;
   children: React.ReactElement;
 }
 

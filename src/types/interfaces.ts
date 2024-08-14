@@ -112,3 +112,6 @@ export interface BaseMovieProps {
     results: BaseMovieProps[];
   }
 
+  export interface MovieListPageTemplateProps extends BaseMovieListProps {
+    title: string;
+  }

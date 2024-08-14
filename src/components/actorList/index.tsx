@@ -9,11 +9,7 @@ const ActorList: React.FC<BaseActorListProps> = ({ actors, action }) => {
       <Actor key={a.id} actor={a} action={action} />
     </Grid>
   ));
-  return (
-    <Grid container spacing={2}>
-      {actorCards}
-    </Grid>
-  );
+  return actorCards;
 };
 
 export default ActorList;

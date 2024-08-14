@@ -3,12 +3,12 @@ import PageTemplate from "../components/templateActorListPage"; // Use a specifi
 import { getPopularActors } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import ActorFilterUI from "../components/actorFilterUI";
-import { ActorDetailsProps, DiscoverActors } from "../types/interfaces";
+import { BaseActorProps, DiscoverActors } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 //import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
-const nameFiltering = (actor: ActorDetailsProps, value: string): boolean => {
+const nameFiltering = (actor: BaseActorProps, value: string): boolean => {
   return actor.name.toLowerCase().includes(value.toLowerCase());
 };
 
@@ -40,16 +40,16 @@ const PopularActors: React.FC = () => {
 
   return (
     <>
-      <PageTemplate
-        title="Popular Actors"
-        actors={displayedActors}
-        /*action={(actor: ActorDetailsProps) => {
-          return <AddToFavouritesIcon {...actor} />;
-        }}*/
-      />
       <ActorFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
+      />
+      <PageTemplate
+        title="Popular Actors"
+        actors={displayedActors}
+        /*action={(actor: BaseActorProps) => {
+          return <AddToFavouritesIcon {...actor} />;
+        }}*/
       />
     </>
   );
