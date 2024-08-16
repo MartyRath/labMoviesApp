@@ -14,6 +14,7 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import ActorBioPage from "./pages/actorBio"; //newly added
 import TrendingMovies from "./pages/trendingMovies";
 import PopularActors from "./pages/popularActors";
+// Add fantasy movie import here
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,10 +43,11 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/reviews/form" element={<AddMovieReviewPage />} />
-            // New Routes
+            {/* New Routes */}
             <Route path="/actors/:id" element={<ActorBioPage />} />
             <Route path="/trendingMovies" element={<TrendingMovies />} />
             <Route path="/popularActors" element={<PopularActors />} />
+            {/* <Route path="/fantasyMovie" element={<FantasyMovie />} /> */}
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
