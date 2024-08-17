@@ -3,12 +3,12 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { BaseFantasyMovieProps } from "../../types/interfaces";
 import { Link } from "react-router-dom";
 
-const AddFantasyMovieIcon: React.FC<BaseFantasyMovieProps> = (movie) => {
+const AddFantasyMovieIcon: React.FC<BaseFantasyMovieProps> = (fantasyMovie) => {
   return (
     <Link
       to={"/fantasyMovies/form"}
       state={{
-        movieId: movie.id,
+        fantasyMovieId: fantasyMovie.id,
       }}
     >
       <AutoAwesomeIcon color="primary" fontSize="large" />
