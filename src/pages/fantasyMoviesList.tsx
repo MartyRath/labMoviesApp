@@ -2,7 +2,7 @@ import React from "react";
 // Contexts
 import { useFantasyMovies } from "../contexts/fantasyMoviesContext";
 // Interfaces
-import { BaseFantasyMovieProps } from "../types/interfaces";
+
 // Hooks
 import useFiltering from "../hooks/useFiltering";
 // Components
@@ -53,8 +53,8 @@ const FantasyMoviesList: React.FC = () => {
       <PageTemplate
         title="Fantasy Movies"
         movies={displayedMovies}
-        action={(movie: BaseFantasyMovieProps) => {
-          const fantasyMovie = movie as BaseFantasyMovieProps;
+        action={(movie) => {
+          console.log(movie);
           return null;
         }}
       />

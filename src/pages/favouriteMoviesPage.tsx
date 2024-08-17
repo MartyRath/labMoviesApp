@@ -79,7 +79,6 @@ const FavouriteMoviesPage: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
-        yearFilter={filterValues[2].value}
       />
     </>
   );

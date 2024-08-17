@@ -1,11 +1,7 @@
 export interface BaseFantasyMovieProps extends BaseMovieProps {
-  title: string;
-  id: number;
-  overview: string;
-  release_date: string;
-  runtime: number;
   production_companies: string[];
   genres: string[];
+  is_fantasy: boolean;
 }
 
 export interface BaseActorListProps {
@@ -72,7 +68,7 @@ export interface BaseMovieProps {
       id: number;
       name: string;
     }[];
-    production_countries: {
+    production_countries?: {
       id: number;
       name: string;
     }[];

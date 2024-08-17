@@ -4,7 +4,11 @@ import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getMovieImages } from "../../api/tmdb-api";
-import { MovieImage, MovieDetailsProps } from "../../types/interfaces";
+import {
+  MovieImage,
+  MovieDetailsProps,
+  BaseFantasyMovieProps,
+} from "../../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../spinner";
 
@@ -21,7 +25,7 @@ const styles = {
 };
 
 interface TemplateMoviePageProps {
-  movie: MovieDetailsProps;
+  movie: MovieDetailsProps | BaseFantasyMovieProps;
   children: React.ReactElement;
 }
 
@@ -29,9 +33,13 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({
   movie,
   children,
 }) => {
+  // Checks if dealing with fantasy movie
+  const isFantasyMovie = "is_fantasy" in movie && movie.is_fantasy;
+
   const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
     ["images", movie.id],
-    () => getMovieImages(movie.id)
+    () => getMovieImages(movie.id),
+    { enabled: !isFantasyMovie } // Skip query if fantasy movie
   );
 
   if (isLoading) {
@@ -42,11 +50,12 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({
     return <h1>{error.message}</h1>;
   }
 
-  const images = data as MovieImage[];
+  const images = (data as MovieImage[]) || [];
 
   return (
     <>
-      <MovieHeader {...movie} />
+      {/* Conditionally render MovieHeader only if it's not a fantasy movie */}
+      {!isFantasyMovie && <MovieHeader {...(movie as MovieDetailsProps)} />}
 
       <Grid container spacing={5} style={{ padding: "15px" }}>
         <Grid item xs={3}>

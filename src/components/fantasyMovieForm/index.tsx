@@ -26,6 +26,7 @@ const FantasyMovieForm: React.FC<FantasyMovieFormProps> = ({ onSubmit }) => {
   ) => {
     onSubmit({
       ...data,
+      is_fantasy: true,
       id: Date.now(), // Create a temp id
       genres,
       production_companies: productionCompanies,

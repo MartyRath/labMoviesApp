@@ -1,25 +1,25 @@
 // Imports
-import React, { MouseEvent, useContext } from "react";
+import React, { useContext } from "react";
+// MUI
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import Grid from "@mui/material/Grid";
-import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 //Images
 import img from "../../images/film-poster-placeholder.png";
 //Interfaces
-import { BaseMovieProps, BaseFantasyMovieProps } from "../../types/interfaces";
+import { BaseMovieProps } from "../../types/interfaces";
 //Components
 import { MoviesContext } from "../../contexts/moviesContext";
+import MovieButton from "../moreInfoButton";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -29,14 +29,17 @@ const styles = {
   },
 };
 
-interface MovieCardProps {
-  movie: BaseMovieProps;
-  action: (m: BaseMovieProps) => React.ReactNode;
+// Making generic to accept FantasyMovie too
+interface MovieCardProps<T extends BaseMovieProps> {
+  movie: T;
+  action: (m: T) => React.ReactNode;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
-  const { mustWatches, favourites, addToFavourites } =
-    useContext(MoviesContext); //NEW
+const MovieCard = <T extends BaseMovieProps>({
+  movie,
+  action,
+}: MovieCardProps<T>) => {
+  const { mustWatches, favourites } = useContext(MoviesContext);
 
   const isFavourite = favourites.find((id) => id === movie.id) ? true : false; //NEW
   const isMustWatch = mustWatches.find((id) => id === movie.id) ? true : false;
@@ -90,9 +93,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, action }) => {
       </CardContent>
       <CardActions disableSpacing>
         {action(movie)}
-        <Button variant="outlined" size="medium" color="primary">
-          <Link to={`/movies/${movie.id}`}>More Info ...</Link>
-        </Button>
+        <MovieButton movie={movie} />
       </CardActions>
     </Card>
   );
