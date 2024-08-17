@@ -33,6 +33,9 @@ const App = () => {
         <SiteHeader />
         <MoviesContextProvider>
           <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* Redirects home if invalid URL entered */}
+            <Route path="*" element={<Navigate to="/" />} />{" "}
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movies/upcoming" element={<UpcomingMovies />} />
             <Route
@@ -40,14 +43,15 @@ const App = () => {
               element={<FavouriteMoviesPage />}
             />
             <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<Navigate to="/" />} />
             <Route path="/reviews/form" element={<AddMovieReviewPage />} />
             {/* New Routes */}
             <Route path="/actors/:id" element={<ActorBioPage />} />
             <Route path="/trendingMovies" element={<TrendingMovies />} />
             <Route path="/popularActors" element={<PopularActors />} />
-            {/* <Route path="/fantasyMovie" element={<FantasyMovie />} /> */}
+            {/* <Route path="/fantasyMovies" element={<FantasyMovie />} /> 
+            <Route path="/fantasyMovies/form" element={<FantasyMovie />} />
+            <Route path="/fantasyMovies/:id" element={<FantasyMovie />} />
+            */}
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>

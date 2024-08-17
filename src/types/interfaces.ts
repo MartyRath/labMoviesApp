@@ -1,3 +1,13 @@
+export interface BaseFantasyMovieProps {
+  title: string;
+  id: number;
+  overview: string;
+  release_date: string;
+  runtime: number;
+  production_companies: string[];
+  genres: string[];
+}
+
 export interface BaseActorListProps {
   actors: BaseActorProps[];
   action: (actor: BaseActorProps) => void;
