@@ -17,7 +17,7 @@ import Avatar from "@mui/material/Avatar";
 //Images
 import img from "../../images/film-poster-placeholder.png";
 //Interfaces
-import { BaseMovieProps } from "../../types/interfaces";
+import { BaseMovieProps, BaseFantasyMovieProps } from "../../types/interfaces";
 //Components
 import { MoviesContext } from "../../contexts/moviesContext";
 

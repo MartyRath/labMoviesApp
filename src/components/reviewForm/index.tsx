@@ -1,17 +1,22 @@
+//Imports
 import React, { useContext, useState, ChangeEvent } from "react";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+//MUI
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { MoviesContext } from "../../contexts/moviesContext";
-import { useNavigate } from "react-router-dom";
-import styles from "./styles";
-import ratings from "./ratingCategories";
-import { BaseMovieProps, Review } from "../../types/interfaces";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+//Contexts
+import { MoviesContext } from "../../contexts/moviesContext";
+//Styles
+import styles from "./styles";
+import ratings from "./ratingCategories";
+//Interfaces
+import { BaseMovieProps, Review } from "../../types/interfaces";
 
 const ReviewForm: React.FC<BaseMovieProps> = (movie) => {
   const defaultValues = {

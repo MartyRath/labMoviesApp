@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+
+// MUI
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -6,10 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { MovieDetailsProps } from "../../types/interfaces";
-import { MoviesContext } from "../../contexts/moviesContext";
 import Avatar from "@mui/material/Avatar";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+// Interfaces
+import { MovieDetailsProps } from "../../types/interfaces";
+// Contexts
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const styles = {
   root: {

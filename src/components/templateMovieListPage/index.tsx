@@ -1,7 +1,10 @@
+//Imports
 import React from "react";
-import Header from "../headerMovieList";
 import Grid from "@mui/material/Grid";
+//Components
+import Header from "../headerMovieList";
 import MovieList from "../movieList";
+// Interfaces
 import { MovieListPageTemplateProps } from "../../types/interfaces";
 
 const styles = {

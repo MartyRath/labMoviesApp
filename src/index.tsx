@@ -14,12 +14,16 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import ActorBioPage from "./pages/actorBio"; //newly added
 import TrendingMovies from "./pages/trendingMovies";
 import PopularActors from "./pages/popularActors";
-//Add imports for fantasy movies here
+import AddFantasyMoviePage from "./pages/addFantasyMoviePage";
+import FantasyMoviesList from "./pages/fantasyMoviesList";
+import FantasyMovieDetails from "./pages/fantasyMovieDetails";
 
 // Components
 import SiteHeader from "./components/siteHeader";
 // Contexts
 import MoviesContextProvider from "./contexts/moviesContext";
+// Added Fantasy Movies Provider for fantasy movie state
+import { FantasyMoviesProvider } from "./contexts/fantasyMoviesContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,26 +41,37 @@ const App = () => {
       <BrowserRouter>
         <SiteHeader />
         <MoviesContextProvider>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            {/* Redirects home if invalid URL entered */}
-            <Route path="*" element={<Navigate to="/" />} />{" "}
-            <Route path="/reviews/:id" element={<MovieReviewPage />} />
-            <Route path="/movies/upcoming" element={<UpcomingMovies />} />
-            <Route
-              path="/movies/favourites"
-              element={<FavouriteMoviesPage />}
-            />
-            <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path="/reviews/form" element={<AddMovieReviewPage />} />
-            {/* New Routes */}
-            <Route path="/actors/:id" element={<ActorBioPage />} />
-            <Route path="/trendingMovies" element={<TrendingMovies />} />
-            <Route path="/popularActors" element={<PopularActors />} />
-            <Route path="/fantasyMovies" element={<FantasyMovie />} />
-            <Route path="/fantasyMovies/form" element={<FantasyMovie />} />
-            <Route path="/fantasyMovies/:id" element={<FantasyMovie />} />
-          </Routes>
+          <FantasyMoviesProvider>
+            {" "}
+            {/* For state */}
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              {/* Redirects home if invalid URL entered */}
+              <Route path="*" element={<Navigate to="/" />} />{" "}
+              <Route path="/reviews/:id" element={<MovieReviewPage />} />
+              <Route path="/movies/upcoming" element={<UpcomingMovies />} />
+              <Route
+                path="/movies/favourites"
+                element={<FavouriteMoviesPage />}
+              />
+              <Route path="/movies/:id" element={<MoviePage />} />
+              <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+              {/* New Routes */}
+              <Route path="/actors/:id" element={<ActorBioPage />} />
+              <Route path="/trendingMovies" element={<TrendingMovies />} />
+              <Route path="/popularActors" element={<PopularActors />} />
+              {/* Fantasy Movie Routes */}
+              <Route
+                path="/fantasyMovies/form"
+                element={<AddFantasyMoviePage />}
+              />
+              <Route path="/fantasyMovies" element={<FantasyMoviesList />} />
+              <Route
+                path="/fantasyMovies/:id"
+                element={<FantasyMovieDetails />}
+              />
+            </Routes>
+          </FantasyMoviesProvider>
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

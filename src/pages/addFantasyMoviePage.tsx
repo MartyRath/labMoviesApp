@@ -1,41 +1,23 @@
 import React from "react";
-import PageTemplate from "../components/templateMoviePage";
 import FantasyMovieForm from "../components/fantasyMovieForm";
-import { useLocation } from "react-router-dom";
-import { useQuery } from "react-query";
-import { getMovie } from "../api/tmdb-api";
-import Spinner from "../components/spinner";
-import { BaseFantasyMovieProps, MovieDetailsProps } from "../types/interfaces";
+import { useNavigate } from "react-router-dom";
+import { BaseFantasyMovieProps } from "../types/interfaces";
+import { useFantasyMovies } from "../contexts/fantasyMoviesContext";
 
 const AddFantasyMoviePage: React.FC = () => {
-  const location = useLocation();
-  const { movieId } = location.state;
-  const {
-    data: movie,
-    error,
-    isLoading,
-    isError,
-  } = useQuery<MovieDetailsProps, Error>(["movie", movieId], () =>
-    getMovie(movieId)
-  );
+  const navigate = useNavigate();
+  const { addFantasyMovie } = useFantasyMovies();
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  const handleSubmit = (fantasyMovie: BaseFantasyMovieProps) => {
+    addFantasyMovie(fantasyMovie);
+    navigate("/fantasyMovies"); // Go to the fantasy movies list page
+  };
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
   return (
-    <>
-      {movie ? (
-        <PageTemplate movie={movie}>
-          <FantasyMovieForm {...movie} />
-        </PageTemplate>
-      ) : (
-        <p>Waiting for movie review details</p>
-      )}
-    </>
+    <div>
+      <h1>Create Your Fantasy Movie</h1>
+      <FantasyMovieForm onSubmit={handleSubmit} />
+    </div>
   );
 };
 

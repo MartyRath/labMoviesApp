@@ -1,4 +1,4 @@
-export interface BaseFantasyMovieProps {
+export interface BaseFantasyMovieProps extends BaseMovieProps {
   title: string;
   id: number;
   overview: string;
@@ -76,6 +76,7 @@ export interface BaseMovieProps {
       id: number;
       name: string;
     }[];
+    production_companies: { name: string }[]; // Added this line
   }
 
   export interface MovieImage {
