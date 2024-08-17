@@ -1,20 +1,25 @@
+// Imports
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom"; // Removed link
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+// Pages
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import UpcomingMovies from "./pages/upcomingMovies";
-import SiteHeader from "./components/siteHeader";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import ActorBioPage from "./pages/actorBio"; //newly added
 import TrendingMovies from "./pages/trendingMovies";
 import PopularActors from "./pages/popularActors";
-// Add fantasy movie import here
+//Add imports for fantasy movies here
+
+// Components
+import SiteHeader from "./components/siteHeader";
+// Contexts
+import MoviesContextProvider from "./contexts/moviesContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,10 +53,9 @@ const App = () => {
             <Route path="/actors/:id" element={<ActorBioPage />} />
             <Route path="/trendingMovies" element={<TrendingMovies />} />
             <Route path="/popularActors" element={<PopularActors />} />
-            {/* <Route path="/fantasyMovies" element={<FantasyMovie />} /> 
+            <Route path="/fantasyMovies" element={<FantasyMovie />} />
             <Route path="/fantasyMovies/form" element={<FantasyMovie />} />
             <Route path="/fantasyMovies/:id" element={<FantasyMovie />} />
-            */}
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
