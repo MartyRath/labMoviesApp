@@ -14,17 +14,18 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 UI:
 
-- Added 6 pages - 4 list, 2 details: daily trending movies, popular actors, actor bio, addFantasyMoviePage, fantasyMovieDetailsPage, fantasyMoviesList
+- Added pages - 4 list, 2 details, auth pages: daily trending movies, popular actors, actor bio, addFantasyMoviePage, fantasyMovieDetailsPage, fantasyMoviesList, login/signup pages
 
 Routing:
 
 - Added parameterised URLs: /actors/:id, /fantasyMovies/:id
-- Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage, Create fantasy movie button->AddFantasyMoviePage
+- Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage, Create fantasy movie button->AddFantasyMoviePage, siteHeader buttons, signin/signout
 - Public/Private routes: User's must be signed in to view favourites, create a fantasy movie, add a review.
+- Supabase authentication (sign in, sign out, sign up). Used for private routes.
 
 Data model:
 
-- Additional data entity types: Actor, FantasyMovie
+- Additional data entity types: Actor, FantasyMovie, User
 - Server state Caching: useQuery in PopularActors
 
 Functionality:
