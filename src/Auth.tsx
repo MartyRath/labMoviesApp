@@ -5,26 +5,40 @@ export function Auth() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) alert(error.message);
-    setLoading(false);
-  };
 
-  const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) alert(error.message);
+    if (!email || !password) {
+      alert("Please enter both email and password");
+      setLoading(false);
+      return;
+    }
+
+    if (isSignUp) {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) alert(error.message);
+      else if (data.user?.identities?.length === 0) {
+        alert("An account with this email already exists.");
+      } else {
+        alert("Check your email for the confirmation link!");
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) alert(error.message);
+    }
+
+    setLoading(false);
   };
 
   return (
     <div>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleAuth}>
         <input
           type="email"
           placeholder="Email"
@@ -38,10 +52,14 @@ export function Auth() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "Loading" : "Sign In"}
+          {loading ? "Loading" : isSignUp ? "Sign Up" : "Sign In"}
         </button>
       </form>
-      <button onClick={handleSignOut}>Sign Out</button>
+      <button onClick={() => setIsSignUp(!isSignUp)}>
+        {isSignUp
+          ? "Already have an account? Sign In"
+          : "Need an account? Sign Up"}
+      </button>
     </div>
   );
 }
