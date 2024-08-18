@@ -23,7 +23,6 @@ import PopularActors from "./pages/popularActors";
 import AddFantasyMoviePage from "./pages/addFantasyMoviePage";
 import FantasyMoviesList from "./pages/fantasyMoviesList";
 import FantasyMovieDetailsPage from "./pages/fantasyMovieDetailsPage";
-import ProtectedRoute from "./components/protectedRoute";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<Session | null>(null);
@@ -36,11 +35,19 @@ const App: React.FC = () => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   return (
     <BrowserRouter>
-      <SiteHeader />
+      <SiteHeader session={session} />
       <MoviesContextProvider>
         <FantasyMoviesProvider>
           <Routes>
@@ -51,18 +58,14 @@ const App: React.FC = () => {
             <Route
               path="/movies/favourites"
               element={
-                <ProtectedRoute session={session}>
-                  <FavouriteMoviesPage />
-                </ProtectedRoute>
+                session ? <FavouriteMoviesPage /> : <Navigate to="/login" />
               }
             />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route
               path="/reviews/form"
               element={
-                <ProtectedRoute session={session}>
-                  <AddMovieReviewPage />
-                </ProtectedRoute>
+                session ? <AddMovieReviewPage /> : <Navigate to="/login" />
               }
             />
             {/* New routes */}
@@ -72,9 +75,7 @@ const App: React.FC = () => {
             <Route
               path="/fantasyMovies/form"
               element={
-                <ProtectedRoute session={session}>
-                  <AddFantasyMoviePage />
-                </ProtectedRoute>
+                session ? <AddFantasyMoviePage /> : <Navigate to="/login" />
               }
             />
             <Route path="/fantasyMovies" element={<FantasyMoviesList />} />

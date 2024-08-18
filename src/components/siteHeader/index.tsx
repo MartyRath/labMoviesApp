@@ -8,11 +8,12 @@ import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 // Supabase auth
 import { supabase } from "../../supabaseClient";
+import { Session } from "@supabase/supabase-js";
 
 const styles = {
   title: {
@@ -20,9 +21,14 @@ const styles = {
   },
 };
 
+// Added for sign in state
+interface SiteHeaderProps {
+  session: Session | null;
+}
+
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
-const SiteHeader: React.FC = () => {
+const SiteHeader: React.FC<SiteHeaderProps> = ({ session }) => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
@@ -111,7 +117,11 @@ const SiteHeader: React.FC = () => {
               ))}
             </>
           )}
-          <button onClick={handleSignOut}>Sign Out</button>
+          {session ? (
+            <button onClick={handleSignOut}>Sign Out</button>
+          ) : (
+            <Link to="/login">Sign In</Link>
+          )}
         </Toolbar>
       </AppBar>
       <Offset />
