@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { supabase } from "./supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 export function Auth() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate();
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ export function Auth() {
         password,
       });
       if (error) alert(error.message);
+      navigate("/");
     }
 
     setLoading(false);
