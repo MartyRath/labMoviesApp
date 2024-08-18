@@ -19,7 +19,7 @@ UI:
 Routing:
 
 - Added parameterised URLs: /actors/:id, /fantasyMovies/:id
-- Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage
+- Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage, Create fantasy movie button->AddFantasyMoviePage
 
 Data model:
 
