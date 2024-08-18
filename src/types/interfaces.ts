@@ -6,7 +6,7 @@ export interface BaseFantasyMovieProps extends BaseMovieProps {
 
 export interface BaseActorListProps {
   actors: BaseActorProps[];
-  action: (actor: BaseActorProps) => void;
+  action?: (actor: BaseActorProps) => React.ReactNode;
 }
 
 export interface ActorListPageTemplateProps {

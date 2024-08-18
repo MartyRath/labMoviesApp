@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import FilterActorsCard from "../filterActorsCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { ActorDetailsProps } from "../../types/interfaces";
+import { BaseActorProps } from "../../types/interfaces";
 
-export const nameFilter = (
-  actor: ActorDetailsProps,
-  value: string
-): boolean => {
+export const nameFilter = (actor: BaseActorProps, value: string): boolean => {
   return actor.name.toLowerCase().includes(value.toLowerCase());
 };
 

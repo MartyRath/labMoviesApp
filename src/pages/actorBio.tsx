@@ -5,7 +5,7 @@ import PageTemplate from "../components/templateActorPage";
 import { getActor } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import { ActorDetailsProps } from "../types/interfaces";
+import { BaseActorProps } from "../types/interfaces";
 
 const ActorBioPage: React.FC = () => {
   const { id } = useParams();
@@ -14,9 +14,7 @@ const ActorBioPage: React.FC = () => {
     error,
     isLoading,
     isError,
-  } = useQuery<ActorDetailsProps, Error>(["actor", id], () =>
-    getActor(id || "")
-  );
+  } = useQuery<BaseActorProps, Error>(["actor", id], () => getActor(id || ""));
 
   if (isLoading) {
     return <Spinner />;

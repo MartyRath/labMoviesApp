@@ -5,7 +5,7 @@ import CakeIcon from "@mui/icons-material/Cake";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import WorkIcon from "@mui/icons-material/Work";
 import Typography from "@mui/material/Typography";
-import { ActorDetailsProps } from "../../types/interfaces";
+import { BaseActorProps } from "../../types/interfaces";
 import MovieIcon from "@mui/icons-material/Movie";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
@@ -30,7 +30,7 @@ const styles = {
   },
 };
 
-const ActorBio: React.FC<ActorDetailsProps> = (actor) => {
+const ActorBio: React.FC<BaseActorProps> = (actor) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
