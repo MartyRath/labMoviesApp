@@ -56,6 +56,7 @@ const App: React.FC = () => {
               />
               <Route path="/movies/:id" element={<MoviePage />} />
               <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+              {/* New routes */}
               <Route path="/actors/:id" element={<ActorBioPage />} />
               <Route path="/trendingMovies" element={<TrendingMovies />} />
               <Route path="/popularActors" element={<PopularActors />} />

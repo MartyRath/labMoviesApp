@@ -11,6 +11,8 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+// Supabase auth
+import { supabase } from "../../supabaseClient";
 
 const styles = {
   title: {
@@ -26,6 +28,11 @@ const SiteHeader: React.FC = () => {
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
+  const handleSignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) alert(error.message);
+  };
 
   const menuOptions = [
     { label: "Home", path: "/" },
@@ -104,6 +111,7 @@ const SiteHeader: React.FC = () => {
               ))}
             </>
           )}
+          <button onClick={handleSignOut}>Sign Out</button>
         </Toolbar>
       </AppBar>
       <Offset />
