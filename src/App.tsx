@@ -28,20 +28,24 @@ const App: React.FC = () => {
   const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
+    // Get the current session when mounting. Sets session (user is logged in or not)
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
+    // Subscribe to changes in session. Sets session on change
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 
+    // Subscription to unsubscribe when unmounting
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 
+    // Cleanup - Stops listening/subscription
     return () => subscription.unsubscribe();
   }, []);
 
