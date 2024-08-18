@@ -28,6 +28,7 @@ export const FantasyMoviesProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+// Custom hook
 export const useFantasyMovies = () => {
   const context = useContext(FantasyMoviesContext);
   if (context === undefined) {

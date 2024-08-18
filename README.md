@@ -12,12 +12,24 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any **modifications to existing features**) .]
 
-- Added 3 pages, 2 list and 1 detail view - daily trending movies, popular actors, actor bio
-- Added parameterised URL: /actors/:id
-- Data hyperlinking from Popular Actors page to Actor Bio page
-- Additional data entity type: Actor
-- Additional filtering: filter by year, actor name
+UI:
+
+- Added 6 pages - 4 list, 2 details: daily trending movies, popular actors, actor bio, addFantasyMoviePage, fantasyMovieDetailsPage, fantasyMoviesList
+
+Routing:
+
+- Added parameterised URLs: /actors/:id, /fantasyMovies/:id
+- Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage
+
+Data model:
+
+- Additional data entity types: Actor, FantasyMovie
 - Server state Caching: useQuery in PopularActors
+
+Functionality:
+
+- Additional filtering: filter movies by year, actors by name
+- Fantasy movie feature - Users can create a fantasy movie
 
 ### Setup requirements.
 

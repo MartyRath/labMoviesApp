@@ -1,8 +1,6 @@
 import React from "react";
 // Contexts
 import { useFantasyMovies } from "../contexts/fantasyMoviesContext";
-// Interfaces
-
 // Hooks
 import useFiltering from "../hooks/useFiltering";
 // Components
