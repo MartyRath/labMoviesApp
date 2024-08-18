@@ -59,8 +59,6 @@ const FavouriteMoviesPage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  const toDo = () => true;
-
   return (
     <>
       <PageTemplate
@@ -79,6 +77,7 @@ const FavouriteMoviesPage: React.FC = () => {
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
+        yearFilter={""}
       />
     </>
   );

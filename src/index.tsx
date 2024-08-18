@@ -16,7 +16,6 @@ import TrendingMovies from "./pages/trendingMovies";
 import PopularActors from "./pages/popularActors";
 import AddFantasyMoviePage from "./pages/addFantasyMoviePage";
 import FantasyMoviesList from "./pages/fantasyMoviesList";
-import FantasyMovieDetails from "./pages/fantasyMovieDetails";
 
 // Components
 import SiteHeader from "./components/siteHeader";
@@ -24,6 +23,7 @@ import SiteHeader from "./components/siteHeader";
 import MoviesContextProvider from "./contexts/moviesContext";
 // Added Fantasy Movies Provider for fantasy movie state
 import { FantasyMoviesProvider } from "./contexts/fantasyMoviesContext";
+import FantasyMovieDetailsPage from "./pages/fantasyMovieDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,7 +68,7 @@ const App = () => {
               <Route path="/fantasyMovies" element={<FantasyMoviesList />} />
               <Route
                 path="/fantasyMovies/:id"
-                element={<FantasyMovieDetails />}
+                element={<FantasyMovieDetailsPage />}
               />
             </Routes>
           </FantasyMoviesProvider>
