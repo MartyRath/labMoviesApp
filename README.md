@@ -10,29 +10,29 @@ This repository contains an implementation of the Movie Fans Web Application usi
 
 ### Features
 
-UI:
+**UI**
 
 - Added pages - 4 list, 2 details, auth pages: daily trending movies, popular actors, actor bio, addFantasyMoviePage, fantasyMovieDetailsPage, fantasyMoviesList, login/signup pages
 
-Routing:
+**Routing**
 
 - Added parameterised URLs: /actors/:id, /fantasyMovies/:id
 - Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage, Create fantasy movie button->AddFantasyMoviePage, siteHeader buttons, signin/signout
 - Public/Private routes: User's must be signed in to view favourites, create a fantasy movie, add a review.
 - Supabase authentication (sign in, sign out, sign up). Used for private routes.
 
-Data model:
+**Data model**
 
 - Additional data entity types: Actor, FantasyMovie, User
 - Server state Caching: useQuery in PopularActors
 
-Functionality:
+**Functionality**
 
 - Additional filtering: filter movies by year, actors by name
 - Multi-criteria Search: Can search by combining text, year, genre
 - Fantasy movie feature - Users can create a fantasy movie
 
-Deployment:
+**Deployment**
 
 - Deployed using Vercel: https://lab-movies-dvftb38vy-martyraths-projects.vercel.app/
 
@@ -42,10 +42,10 @@ Add a .env file in the root directory with VITE_TMDB_KEY, VITE_SUPABASE_URL and 
 
 ### API endpoints
 
-- Actor details - person/:id
-- Actor images - /person/:id/images
-- Popular actors - person/popular
-- Daily Trending movies - /trending/movie/day
+- person/:id - Actor details
+- /person/:id/images - Actor images
+- person/popular - Popular actors
+- /trending/movie/day - Daily Trending movies
 
 ### Routing
 
