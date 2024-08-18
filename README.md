@@ -31,6 +31,7 @@ Data model:
 Functionality:
 
 - Additional filtering: filter movies by year, actors by name
+- Multi-criteria Search: Can search by combining text, year, genre
 - Fantasy movie feature - Users can create a fantasy movie
 
 ### Setup requirements.
