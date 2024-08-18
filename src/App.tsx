@@ -57,7 +57,14 @@ const App: React.FC = () => {
               }
             />
             <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+            <Route
+              path="/reviews/form"
+              element={
+                <ProtectedRoute session={session}>
+                  <AddMovieReviewPage />
+                </ProtectedRoute>
+              }
+            />
             {/* New routes */}
             <Route path="/actors/:id" element={<ActorBioPage />} />
             <Route path="/trendingMovies" element={<TrendingMovies />} />
@@ -66,7 +73,7 @@ const App: React.FC = () => {
               path="/fantasyMovies/form"
               element={
                 <ProtectedRoute session={session}>
-                  <FavouriteMoviesPage />
+                  <AddFantasyMoviePage />
                 </ProtectedRoute>
               }
             />
