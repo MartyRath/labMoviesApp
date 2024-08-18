@@ -118,9 +118,24 @@ const SiteHeader: React.FC<SiteHeaderProps> = ({ session }) => {
             </>
           )}
           {session ? (
-            <button onClick={handleSignOut}>Sign Out</button>
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={handleSignOut}
+              sx={{ marginLeft: 2 }}
+            >
+              Sign Out
+            </Button>
           ) : (
-            <Link to="/login">Sign In</Link>
+            <Button
+              component={Link}
+              to="/login"
+              color="error"
+              variant="contained"
+              sx={{ marginLeft: 2 }}
+            >
+              Sign In
+            </Button>
           )}
         </Toolbar>
       </AppBar>
