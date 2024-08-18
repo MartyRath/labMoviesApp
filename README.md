@@ -32,6 +32,10 @@ This repository contains an implementation of the Movie Fans Web Application usi
 - Multi-criteria Search: Can search by combining text, year, genre
 - Fantasy movie feature - Users can create a fantasy movie
 
+**Storybook support**
+
+- For existing storybooks, and additionally actor bio.
+
 **Deployment**
 
 - Deployed using Vercel: https://lab-movies-dvftb38vy-martyraths-projects.vercel.app/
@@ -42,9 +46,9 @@ Add a .env file in the root directory with VITE_TMDB_KEY, VITE_SUPABASE_URL and 
 
 ### API endpoints
 
-- person/:id - Actor details
+- /person/:id - Actor details
 - /person/:id/images - Actor images
-- person/popular - Popular actors
+- /person/popular - Popular actors
 - /trending/movie/day - Daily Trending movies
 
 ### Routing
