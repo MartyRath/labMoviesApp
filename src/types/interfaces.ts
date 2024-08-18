@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export interface BaseFantasyMovieProps extends BaseMovieProps {
   production_companies: string[];
   genres: string[];
@@ -43,17 +45,17 @@ export interface BaseMovieProps {
     budget: number;
     homepage: string | undefined;
     id: number;
-    imdb_id: string;
+    imdb_id?: string;
     original_language: string;
-    overview: string;
-    release_date: string;
-    vote_average: number;
-    popularity: number;
+    overview?: string;
+    release_date?: string;
+    vote_average?: number;
+    popularity?: number;
     poster_path?: string;
-    tagline: string;
-    runtime: number;
-    revenue: number;
-    vote_count: number;
+    tagline?: string;
+    runtime?: number;
+    revenue?: number;
+    vote_count?: number;
     favourite?: boolean;
     genre_ids?: number[];
     mustWatch?: boolean;
@@ -98,6 +100,7 @@ export interface BaseMovieProps {
   }
 
   export interface Review {
+    id: Key | null | undefined;
     author: string,
     content: string,
     agree: boolean,

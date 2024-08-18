@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
-import { ActorDetailsProps } from "../../types/interfaces";
+import { BaseActorProps } from "../../types/interfaces";
 
 const styles = {
   root: {
@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-const ActorHeader: React.FC<ActorDetailsProps> = (actor) => {
+const ActorHeader: React.FC<BaseActorProps> = (actor) => {
   return (
     <Paper component="div" sx={styles.root}>
       <IconButton aria-label="go back">

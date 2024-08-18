@@ -3,9 +3,8 @@ import MovieCard from "../components/movieCard";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";
 import MoviesContextProvider from "../contexts/moviesContext";
-//import { action } from "@storybook/addon-actions";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
-//import React from 'react';
+import { BaseMovieProps } from "../types/interfaces"; // Ensure this import is correct
 
 const meta = {
   title: "Home Page/MovieCard",
@@ -22,17 +21,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    action: (movie) => <AddToFavouritesIcon {...movie} />,
-    movie: SampleMovie,
+    movie: SampleMovie as BaseMovieProps, // Ensure SampleMovie is cast to BaseMovieProps
+    action: (movie: BaseMovieProps) => <AddToFavouritesIcon movie={movie} />, // Pass movie correctly
   },
 };
 Basic.storyName = "Default";
 
-const sampleNoPoster = { ...SampleMovie, poster_path: undefined };
+const sampleNoPoster = {
+  ...SampleMovie,
+  poster_path: undefined,
+} as BaseMovieProps; // Ensure type cast to BaseMovieProps
 export const Exceptional: Story = {
   args: {
     movie: sampleNoPoster,
-    action: (movie) => <AddToFavouritesIcon {...movie} />,
+    action: (movie: BaseMovieProps) => <AddToFavouritesIcon movie={movie} />, // Pass movie correctly
   },
 };
 Exceptional.storyName = "Exception";
