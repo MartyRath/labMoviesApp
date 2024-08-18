@@ -20,6 +20,7 @@ Routing:
 
 - Added parameterised URLs: /actors/:id, /fantasyMovies/:id
 - Data hyperlinking: PopularActors->ActorBio, fantasyMoviesList->fantasyMovieDetailsPage, Create fantasy movie button->AddFantasyMoviePage
+- Public/Private routes: User's must be signed in to view favourites and creating a fantasy movie.
 
 Data model:
 

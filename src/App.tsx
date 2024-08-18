@@ -23,6 +23,7 @@ import PopularActors from "./pages/popularActors";
 import AddFantasyMoviePage from "./pages/addFantasyMoviePage";
 import FantasyMoviesList from "./pages/fantasyMoviesList";
 import FantasyMovieDetailsPage from "./pages/fantasyMovieDetailsPage";
+import ProtectedRoute from "./components/protectedRoute";
 
 const App: React.FC = () => {
   const [session, setSession] = useState<Session | null>(null);
@@ -42,35 +43,40 @@ const App: React.FC = () => {
       <SiteHeader />
       <MoviesContextProvider>
         <FantasyMoviesProvider>
-          {!session ? (
-            <Auth />
-          ) : (
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<Navigate to="/" />} />
-              <Route path="/reviews/:id" element={<MovieReviewPage />} />
-              <Route path="/movies/upcoming" element={<UpcomingMovies />} />
-              <Route
-                path="/movies/favourites"
-                element={<FavouriteMoviesPage />}
-              />
-              <Route path="/movies/:id" element={<MoviePage />} />
-              <Route path="/reviews/form" element={<AddMovieReviewPage />} />
-              {/* New routes */}
-              <Route path="/actors/:id" element={<ActorBioPage />} />
-              <Route path="/trendingMovies" element={<TrendingMovies />} />
-              <Route path="/popularActors" element={<PopularActors />} />
-              <Route
-                path="/fantasyMovies/form"
-                element={<AddFantasyMoviePage />}
-              />
-              <Route path="/fantasyMovies" element={<FantasyMoviesList />} />
-              <Route
-                path="/fantasyMovies/:id"
-                element={<FantasyMovieDetailsPage />}
-              />
-            </Routes>
-          )}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/reviews/:id" element={<MovieReviewPage />} />
+            <Route path="/movies/upcoming" element={<UpcomingMovies />} />
+            <Route
+              path="/movies/favourites"
+              element={
+                <ProtectedRoute session={session}>
+                  <FavouriteMoviesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/movies/:id" element={<MoviePage />} />
+            <Route path="/reviews/form" element={<AddMovieReviewPage />} />
+            {/* New routes */}
+            <Route path="/actors/:id" element={<ActorBioPage />} />
+            <Route path="/trendingMovies" element={<TrendingMovies />} />
+            <Route path="/popularActors" element={<PopularActors />} />
+            <Route
+              path="/fantasyMovies/form"
+              element={
+                <ProtectedRoute session={session}>
+                  <FavouriteMoviesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/fantasyMovies" element={<FantasyMoviesList />} />
+            <Route
+              path="/fantasyMovies/:id"
+              element={<FantasyMovieDetailsPage />}
+            />
+            <Route path="/login" element={<Auth />} />
+          </Routes>
         </FantasyMoviesProvider>
       </MoviesContextProvider>
     </BrowserRouter>
